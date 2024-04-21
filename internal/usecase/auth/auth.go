@@ -48,7 +48,7 @@ func (u *userAuth) Login(w http.ResponseWriter, r *http.Request) {
 	}(r.Body)
 
 	findUser, err := u.user.FindUser(r.Context(), entity.Users{
-		Name: payload.Email,
+		Email: payload.Email,
 	})
 	if err != nil {
 		log.Printf("failed to find user %v", err)
@@ -75,9 +75,9 @@ func (u *userAuth) Login(w http.ResponseWriter, r *http.Request) {
 
 	exp := time.Now().Add(time.Hour * 15)
 	claims := &consts.JWTClaim{
-		Username: findUser.Name,
+		Email: findUser.Email,
 		RegisteredClaims: jwt.RegisteredClaims{
-			Issuer:    "gokomodo_service",
+			Issuer:    "go_komodo_service",
 			ExpiresAt: jwt.NewNumericDate(exp),
 		},
 	}
