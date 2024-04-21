@@ -1,0 +1,27 @@
+{
+  "app": {
+    "name": "gokomodo-service-backend"
+  },
+  "web": {
+    "port": 3000
+  },
+  "log": {
+    "level": 6
+  },
+  "database": {
+    "driver": "mysql",
+    "username": "",
+    "password": "",
+    "host": "localhost",
+    "port": 3306,
+    "name": "gokomodo_backend",
+    "pool": {
+      "idle": 10,
+      "max": 100,
+      "lifetime": 300
+    }
+  },
+  "key": {
+    "jwt": ""
+  }
+}
