@@ -15,14 +15,17 @@ import (
 )
 
 type userAuth struct {
-	user repository.UserRepositories
+	user     repository.UserRepositories
+	userRole repository.UserRoleRepositories
 }
 
 func NewUserAuth(
 	user repository.UserRepositories,
+	userRole repository.UserRoleRepositories,
 ) UserAuth {
 	return &userAuth{
-		user: user,
+		user:     user,
+		userRole: userRole,
 	}
 }
 
@@ -65,6 +68,19 @@ func (u *userAuth) Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	findRole, err := u.userRole.FindUserRole(r.Context(), entity.UserRoles{
+		UserId: findUser.Id,
+		RoleId: payload.RoleId,
+	})
+
+	if err != nil {
+		log.Printf("failed to find user role %v", err)
+		response.Code = http.StatusInternalServerError
+		response.Message = err.Error()
+		helper.ResponseJSON(w, http.StatusInternalServerError, response)
+		return
+	}
+
 	err = compareHashPassword([]byte(findUser.Password), []byte(payload.Password))
 	if err != nil {
 		response.Code = http.StatusUnauthorized
@@ -75,7 +91,11 @@ func (u *userAuth) Login(w http.ResponseWriter, r *http.Request) {
 
 	exp := time.Now().Add(time.Hour * 15)
 	claims := &consts.JWTClaim{
-		Email: findUser.Email,
+		Id:       findUser.Id,
+		FullName: findUser.FullName,
+		Email:    findUser.Email,
+		RoleId:   findRole.RoleId,
+		Address:  findUser.Address,
 		RegisteredClaims: jwt.RegisteredClaims{
 			Issuer:    "go_komodo_service",
 			ExpiresAt: jwt.NewNumericDate(exp),
