@@ -8,6 +8,10 @@ import (
 var JWT_KEY = []byte(config.NewViper().GetString("key.jwt"))
 
 type JWTClaim struct {
-	Email string
+	Id       int
+	Email    string
+	FullName string
+	RoleId   int
+	Address  string
 	jwt.RegisteredClaims
 }
