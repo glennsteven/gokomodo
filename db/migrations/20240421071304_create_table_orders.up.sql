@@ -6,6 +6,6 @@ CREATE TABLE orders(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT fk_user_orders FOREIGN KEY (user_id) REFERENCES users(id),
-    INDEX idx_created_at (created_at)
-)ENGINE = InnoDB;
+    INDEX idx_created_at (created_at),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
