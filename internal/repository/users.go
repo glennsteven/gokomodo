@@ -22,8 +22,8 @@ func (u *userRepository) FindUser(ctx context.Context, wheres entity.Users) (*en
 		err    error
 	)
 
-	q := `SELECT email, name, password FROM users WHERE email = ?`
-	rows, err := u.db.QueryContext(ctx, q, &wheres.Name)
+	q := `SELECT email, full_name, password FROM users WHERE email = ?`
+	rows, err := u.db.QueryContext(ctx, q, &wheres.Email)
 	if err != nil {
 		log.Printf("got error when find username %v", err)
 		return nil, err
@@ -31,7 +31,7 @@ func (u *userRepository) FindUser(ctx context.Context, wheres entity.Users) (*en
 
 	defer rows.Close()
 	if rows.Next() {
-		err = rows.Scan(&result.Email, &result.Name, &result.Password)
+		err = rows.Scan(&result.Email, &result.FullName, &result.Password)
 		if err != nil {
 			log.Printf("got error scan value %v", err)
 			return nil, err
