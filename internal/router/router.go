@@ -70,5 +70,13 @@ func Router(r *mux.Router) {
 		orderProductService.OrderProduct,
 	).Methods(http.MethodPost)
 
+	sub.HandleFunc("/buyer/products",
+		orderProductService.ListOfProducts,
+	).Methods(http.MethodGet)
+
+	sub.HandleFunc("/buyer/orders",
+		orderProductService.ListOrders,
+	).Methods(http.MethodGet)
+
 	sub.Use(middleware.JWTMiddleware)
 }

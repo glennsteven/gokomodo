@@ -5,32 +5,10 @@ import (
 	"gokomodo_test/internal/consts"
 	"gokomodo_test/internal/entity"
 	"gokomodo_test/internal/presentations"
-	"gokomodo_test/internal/repository"
 	"log"
 	"net/http"
 	"time"
 )
-
-type orderBuyerUseCase struct {
-	repoOrder       repository.OrderRepositories
-	repoOrderDetail repository.OrderDetailsRepositories
-	repoProduct     repository.ProductRepositories
-	repoUser        repository.UserRepositories
-}
-
-func NewOrderBuyerUseCase(
-	repoOrder repository.OrderRepositories,
-	repoOrderDetail repository.OrderDetailsRepositories,
-	repoProduct repository.ProductRepositories,
-	repoUser repository.UserRepositories,
-) Resolver {
-	return &orderBuyerUseCase{
-		repoOrder:       repoOrder,
-		repoOrderDetail: repoOrderDetail,
-		repoProduct:     repoProduct,
-		repoUser:        repoUser,
-	}
-}
 
 func (o *orderBuyerUseCase) OrderProduct(ctx context.Context, payload presentations.PayloadOrder, authId int) (presentations.Response, error) {
 	findProduct, err := o.repoProduct.FindOne(ctx, payload.ProductId)

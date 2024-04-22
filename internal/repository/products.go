@@ -279,3 +279,73 @@ func (p *productsRepository) CountOrderSeller(ctx context.Context, authID int) (
 
 	return count, nil
 }
+
+func (p *productsRepository) ListingProductGeneral(ctx context.Context, limit, offset int) ([]entity.ListingProduct, error) {
+	query := `
+		SELECT
+			p.id,
+			p.user_id,
+			u.full_name,
+			u.address,
+			p.product_name,
+			p.description,
+			p.price,
+			p.created_at,
+			p.updated_at
+		FROM 
+			products p
+		JOIN 
+			users AS u ON u.id = p.user_id
+		ORDER BY 
+			p.created_at DESC
+		LIMIT ? OFFSET ?
+	`
+
+	rows, err := p.db.QueryContext(ctx, query, limit, offset)
+	if err != nil {
+		return nil, fmt.Errorf("failed to execute query: %v", err)
+	}
+	defer rows.Close()
+
+	var products []entity.ListingProduct
+
+	// Iterate over the rows and scan each result into a ListingProduct struct
+	for rows.Next() {
+		var product entity.ListingProduct
+		err := rows.Scan(
+			&product.Id,
+			&product.UserId,
+			&product.FullName,
+			&product.Address,
+			&product.ProductName,
+			&product.Description,
+			&product.Price,
+			&product.CreatedAt,
+			&product.UpdatedAt,
+		)
+		if err != nil {
+			return nil, fmt.Errorf("failed to scan row: %v", err)
+		}
+		// Append the scanned product to the slice
+		products = append(products, product)
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, fmt.Errorf("error during iteration: %v", err)
+	}
+
+	return products, nil
+}
+
+func (p *productsRepository) CountProductGeneral(ctx context.Context) (int, error) {
+	query := `SELECT COUNT(*) FROM products `
+
+	// Execute the query and scan the result
+	var count int
+	err := p.db.QueryRowContext(ctx, query).Scan(&count)
+	if err != nil {
+		return 0, fmt.Errorf("failed to count products: %v", err)
+	}
+
+	return count, nil
+}

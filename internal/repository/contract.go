@@ -21,10 +21,14 @@ type ProductRepositories interface {
 	Count(ctx context.Context, authId int) (int, error)
 	ListingOrderSeller(ctx context.Context, limit, offset, authId int) ([]entity.ListingOrderDetails, error)
 	CountOrderSeller(ctx context.Context, authId int) (int, error)
+	ListingProductGeneral(ctx context.Context, limit, offset int) ([]entity.ListingProduct, error)
+	CountProductGeneral(ctx context.Context) (int, error)
 }
 
 type OrderRepositories interface {
 	Store(ctx context.Context, payload entity.Orders) (*entity.Orders, error)
+	Listing(ctx context.Context, limit, offset, authId int) ([]entity.ListingOrderBuyer, error)
+	Count(ctx context.Context, authId int) (int, error)
 }
 
 type OrderDetailsRepositories interface {

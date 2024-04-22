@@ -1,0 +1,575 @@
+{
+	"info": {
+		"_postman_id": "a4a2bcf8-0b4e-4e43-93cc-b8e9972d445a",
+		"name": "Go-Komodo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17679631"
+	},
+	"item": [
+		{
+			"name": "Seller",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MywiRW1haWwiOiJqb2huZG9lMjlAZ21haWwuY29tIiwiRnVsbE5hbWUiOiJKb2huIERvZSIsIlJvbGVJZCI6MiwiQWRkcmVzcyI6Ik5ldyBZb3JrIiwiaXNzIjoiZ29fa29tb2RvX3NlcnZpY2UiLCJleHAiOjE3MTM4MzcwNzd9.sUqgSqvIVEtcRXbzxdDvz8yYVzrWTPXTgO6C4o9r4xc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Sepeda Listrik\",\n    \"description\" : \"Ramah lingkungan\",\n    \"price\": 15000000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/seller/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"seller",
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success Create Product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MSwiRW1haWwiOiJnbG5zdGV2ZW43MkBnbWFpbC5jb20iLCJGdWxsTmFtZSI6IkdsZW5uIFN0ZXZlbiIsIlJvbGVJZCI6MiwiQWRkcmVzcyI6IlNhbGF0aWdhLCBKYXdhIFRlbmdhaCIsImlzcyI6ImdvX2tvbW9kb19zZXJ2aWNlIiwiZXhwIjoxNzEzODE2MzI2fQ.ZGASGrI_EV7WYFiyHoKlNX-yC5V0IYxe-Snshnd96no",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"Televisi\",\n    \"description\" : \"semua ukuran\",\n    \"price\": 4805000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/seller/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"seller",
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2024 06:32:33 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "242"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 201,\n    \"message\": \"success create product\",\n    \"data\": {\n        \"id\": 7,\n        \"user_id\": 1,\n        \"product_name\": \"Televisi\",\n        \"description\": \"semua ukuran\",\n        \"price\": 4805000,\n        \"created_at\": \"2024-04-22T13:32:33.488275+07:00\",\n        \"updated_at\": \"2024-04-22T13:32:33.488275+07:00\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Accept Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MSwiRW1haWwiOiJnbG5zdGV2ZW43MkBnbWFpbC5jb20iLCJGdWxsTmFtZSI6IkdsZW5uIFN0ZXZlbiIsIlJvbGVJZCI6MiwiQWRkcmVzcyI6IlNhbGF0aWdhLCBKYXdhIFRlbmdhaCIsImlzcyI6ImdvX2tvbW9kb19zZXJ2aWNlIiwiZXhwIjoxNzEzODEyMzI1fQ.7YJ7lPq5wtWHlOt2EVURI5O13I897lhhdDRAlFEDNCI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"order_detail_id\" : 2,\n    \"status\" : 2 //2 = accepted\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/seller/accept-order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"seller",
+								"accept-order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success Accept Order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MSwiRW1haWwiOiJnbG5zdGV2ZW43MkBnbWFpbC5jb20iLCJGdWxsTmFtZSI6IkdsZW5uIFN0ZXZlbiIsIlJvbGVJZCI6MiwiQWRkcmVzcyI6IlNhbGF0aWdhLCBKYXdhIFRlbmdhaCIsImlzcyI6ImdvX2tvbW9kb19zZXJ2aWNlIiwiZXhwIjoxNzEzODEyMzI1fQ.7YJ7lPq5wtWHlOt2EVURI5O13I897lhhdDRAlFEDNCI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"order_detail_id\" : 2,\n    \"status\" : 2 //2 = accepted\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/seller/accept-order",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"seller",
+										"accept-order"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2024 07:08:02 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"message\": \"orders in the packaging process\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Listing Product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MSwiRW1haWwiOiJnbG5zdGV2ZW43MkBnbWFpbC5jb20iLCJGdWxsTmFtZSI6IkdsZW5uIFN0ZXZlbiIsIlJvbGVJZCI6MiwiQWRkcmVzcyI6IlNhbGF0aWdhLCBKYXdhIFRlbmdhaCIsImlzcyI6ImdvX2tvbW9kb19zZXJ2aWNlIiwiZXhwIjoxNzEzODE2MzI2fQ.ZGASGrI_EV7WYFiyHoKlNX-yC5V0IYxe-Snshnd96no",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/seller/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"seller",
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success Listing Product",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MSwiRW1haWwiOiJnbG5zdGV2ZW43MkBnbWFpbC5jb20iLCJGdWxsTmFtZSI6IkdsZW5uIFN0ZXZlbiIsIlJvbGVJZCI6MiwiQWRkcmVzcyI6IlNhbGF0aWdhLCBKYXdhIFRlbmdhaCIsImlzcyI6ImdvX2tvbW9kb19zZXJ2aWNlIiwiZXhwIjoxNzEzODE2MzI2fQ.ZGASGrI_EV7WYFiyHoKlNX-yC5V0IYxe-Snshnd96no",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/seller/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"seller",
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2024 11:02:00 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1096"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"id\": 7,\n            \"seller_information\": {\n                \"id\": 1,\n                \"full_name\": \"Glenn Steven\",\n                \"address\": \"Salatiga, Jawa Tengah\"\n            },\n            \"product_name\": \"Televisi\",\n            \"price\": 4805000,\n            \"description\": \"semua ukuran\",\n            \"created_at\": \"2024-04-22 13:32:33\",\n            \"updated_at\": \"2024-04-22 13:32:33\"\n        },\n        {\n            \"id\": 6,\n            \"seller_information\": {\n                \"id\": 1,\n                \"full_name\": \"Glenn Steven\",\n                \"address\": \"Salatiga, Jawa Tengah\"\n            },\n            \"product_name\": \"Kasur Lipat\",\n            \"price\": 4805000,\n            \"description\": \"semua ukuran\",\n            \"created_at\": \"2024-04-22 13:12:45\",\n            \"updated_at\": \"2024-04-22 13:12:45\"\n        },\n        {\n            \"id\": 5,\n            \"seller_information\": {\n                \"id\": 1,\n                \"full_name\": \"Glenn Steven\",\n                \"address\": \"Salatiga, Jawa Tengah\"\n            },\n            \"product_name\": \"Celana Dalam\",\n            \"price\": 100000,\n            \"description\": \"ukuran xl,l,m\",\n            \"created_at\": \"2024-04-22 13:12:18\",\n            \"updated_at\": \"2024-04-22 13:12:18\"\n        },\n        {\n            \"id\": 4,\n            \"seller_information\": {\n                \"id\": 1,\n                \"full_name\": \"Glenn Steven\",\n                \"address\": \"Salatiga, Jawa Tengah\"\n            },\n            \"product_name\": \"Celana Dalam\",\n            \"price\": 100000,\n            \"description\": \"ukuran xl,l,m\",\n            \"created_at\": \"2024-04-21 23:25:08\",\n            \"updated_at\": \"2024-04-21 23:25:08\"\n        }\n    ],\n    \"meta_data\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"limit\": 10,\n            \"total_page\": 1,\n            \"total_count\": 4\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Listing Order Seller",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MSwiRW1haWwiOiJnbG5zdGV2ZW43MkBnbWFpbC5jb20iLCJGdWxsTmFtZSI6IkdsZW5uIFN0ZXZlbiIsIlJvbGVJZCI6MiwiQWRkcmVzcyI6IlNhbGF0aWdhLCBKYXdhIFRlbmdhaCIsImlzcyI6ImdvX2tvbW9kb19zZXJ2aWNlIiwiZXhwIjoxNzEzODE2MzI2fQ.ZGASGrI_EV7WYFiyHoKlNX-yC5V0IYxe-Snshnd96no",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/seller/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"seller",
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success Listing Product",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MSwiRW1haWwiOiJnbG5zdGV2ZW43MkBnbWFpbC5jb20iLCJGdWxsTmFtZSI6IkdsZW5uIFN0ZXZlbiIsIlJvbGVJZCI6MiwiQWRkcmVzcyI6IlNhbGF0aWdhLCBKYXdhIFRlbmdhaCIsImlzcyI6ImdvX2tvbW9kb19zZXJ2aWNlIiwiZXhwIjoxNzEzODE2MzI2fQ.ZGASGrI_EV7WYFiyHoKlNX-yC5V0IYxe-Snshnd96no",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/seller/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"seller",
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 22 Apr 2024 12:32:03 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1253"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"id\": 7,\n            \"seller_information\": {\n                \"id\": 1,\n                \"full_name\": \"Glenn Steven\",\n                \"address\": \"Salatiga, Jawa Tengah\"\n            },\n            \"buyer_information\": {\n                \"id\": 2,\n                \"full_name\": \"Richard Fernando\",\n                \"address\": \"Jakarta Timur\"\n            },\n            \"data_product_seller\": {\n                \"product_name\": \"Televisi\",\n                \"price\": 4805000,\n                \"description\": \"semua ukuran\",\n                \"quantity\": 1\n            },\n            \"status\": 2,\n            \"created_at\": \"2024-04-22 13:32:33\",\n            \"updated_at\": \"2024-04-22 13:32:33\"\n        },\n        {\n            \"id\": 6,\n            \"seller_information\": {\n                \"id\": 1,\n                \"full_name\": \"Glenn Steven\",\n                \"address\": \"Salatiga, Jawa Tengah\"\n            },\n            \"buyer_information\": {\n                \"id\": 2,\n                \"full_name\": \"Richard Fernando\",\n                \"address\": \"Jakarta Timur\"\n            },\n            \"data_product_seller\": {\n                \"product_name\": \"Kasur Lipat\",\n                \"price\": 4805000,\n                \"description\": \"semua ukuran\",\n                \"quantity\": 2\n            },\n            \"status\": 1,\n            \"created_at\": \"2024-04-22 13:12:45\",\n            \"updated_at\": \"2024-04-22 13:12:45\"\n        },\n        {\n            \"id\": 4,\n            \"seller_information\": {\n                \"id\": 1,\n                \"full_name\": \"Glenn Steven\",\n                \"address\": \"Salatiga, Jawa Tengah\"\n            },\n            \"buyer_information\": {\n                \"id\": 2,\n                \"full_name\": \"Richard Fernando\",\n                \"address\": \"Jakarta Timur\"\n            },\n            \"data_product_seller\": {\n                \"product_name\": \"Celana Dalam\",\n                \"price\": 100000,\n                \"description\": \"ukuran xl,l,m\",\n                \"quantity\": 5\n            },\n            \"status\": 2,\n            \"created_at\": \"2024-04-21 23:25:08\",\n            \"updated_at\": \"2024-04-21 23:25:08\"\n        }\n    ],\n    \"meta_data\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"limit\": 10,\n            \"total_page\": 1,\n            \"total_count\": 3\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Buyer",
+			"item": [
+				{
+					"name": "List Of Products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MSwiRW1haWwiOiJnbG5zdGV2ZW43MkBnbWFpbC5jb20iLCJGdWxsTmFtZSI6IkdsZW5uIFN0ZXZlbiIsIlJvbGVJZCI6MSwiQWRkcmVzcyI6IlNhbGF0aWdhLCBKYXdhIFRlbmdhaCIsImlzcyI6ImdvX2tvbW9kb19zZXJ2aWNlIiwiZXhwIjoxNzEzODUwNzg0fQ.Ph1Ujyu5sxV64K0TihWRPnSHBrKK3o8YShWTTzDlFek",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/buyer/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"buyer",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MiwiRW1haWwiOiJrb21vZG8xMkBnbWFpbC5jb20iLCJGdWxsTmFtZSI6IkdvIEtvbW9kbyIsIlJvbGVJZCI6MSwiQWRkcmVzcyI6Ikpha2FydGEgVGltdXIiLCJpc3MiOiJnb19rb21vZG9fc2VydmljZSIsImV4cCI6MTcxMzc3Mzg3OX0.LLnswFlr3u7xbcN0MK2nZJBIJbwhF16MZ0NF94Bei3w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product_id\": 6,\n    \"quantity\": 2,\n    \"delivery_destination_order\": \"Lampung Pelosok\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/buyer/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"buyer",
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success Order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MiwiRW1haWwiOiJrb21vZG8xMkBnbWFpbC5jb20iLCJGdWxsTmFtZSI6IkdvIEtvbW9kbyIsIlJvbGVJZCI6MSwiQWRkcmVzcyI6Ikpha2FydGEgVGltdXIiLCJpc3MiOiJnb19rb21vZG9fc2VydmljZSIsImV4cCI6MTcxMzc3Mzg3OX0.LLnswFlr3u7xbcN0MK2nZJBIJbwhF16MZ0NF94Bei3w",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"product_id\": 4,\n    \"quantity\": 5,\n    \"delivery_destination_order\": \"Jakarta Timur\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/buyer/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"buyer",
+										"orders"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Apr 2024 17:21:51 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "263"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 201,\n    \"message\": \"Your order will be processed immediately, please wait\",\n    \"data\": {\n        \"id\": 1,\n        \"product_id\": 4,\n        \"order_id\": 1,\n        \"quantity\": 5,\n        \"total_price\": 500000,\n        \"status\": 1,\n        \"created_at\": \"2024-04-22T00:21:51.540557+07:00\",\n        \"updated_at\": \"2024-04-22T00:21:51.540557+07:00\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "List Order",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6MiwiRW1haWwiOiJrb21vZG8xMkBnbWFpbC5jb20iLCJGdWxsTmFtZSI6IlJpY2hhcmQgRmVybmFuZG8iLCJSb2xlSWQiOjEsIkFkZHJlc3MiOiJKYWthcnRhIFRpbXVyIiwiaXNzIjoiZ29fa29tb2RvX3NlcnZpY2UiLCJleHAiOjE3MTM4NTQyNDV9.N7xElONU298zmrXoptjUPqi8gRF9Y-6dT1heqq0dOrY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/buyer/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"buyer",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"komodo12@gmail.com\",\n    \"password\": \"Asjfjsdfmn123_\",\n    \"role_id\": 2 //1 = buyer, 2 = seller\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"glnsteven72@gmail.com\",\n    \"password\": \"Asjfjsdfmn123_\",\n    \"role_id\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Apr 2024 15:25:19 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "335"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"message\": \"token created\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImdsbnN0ZXZlbjcyQGdtYWlsLmNvbSIsIkZ1bGxOYW1lIjoiR2xlbm4gU3RldmVuIiwiUm9sZUlkIjoyLCJBZGRyZXNzIjoiU2FsYXRpZ2EsIEphd2EgVGVuZ2FoIiwiaXNzIjoiZ29fa29tb2RvX3NlcnZpY2UiLCJleHAiOjE3MTM3NjcxMTl9.S-DzbPlOEHP8TKI4k8_-Gimhc7w1HlQAeItOt6ju7BM\"\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
