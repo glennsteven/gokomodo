@@ -1,7 +1,10 @@
 package auth
 
-import "net/http"
+import (
+	"context"
+	"gokomodo_test/internal/presentations"
+)
 
-type UserAuth interface {
-	Login(w http.ResponseWriter, r *http.Request)
+type Resolver interface {
+	Login(ctx context.Context, payload presentations.PayloadLogin) (presentations.Response, error)
 }

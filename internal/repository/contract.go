@@ -25,4 +25,6 @@ type OrderRepositories interface {
 
 type OrderDetailsRepositories interface {
 	Store(ctx context.Context, payload entity.OrderDetails) (*entity.OrderDetails, error)
+	AcceptOrderBuyer(ctx context.Context, payload entity.OrderDetails) error
+	FindOne(ctx context.Context, id int) (*entity.OrderDetails, error)
 }
