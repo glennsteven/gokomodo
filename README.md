@@ -45,3 +45,14 @@ migration down
 ```shell
 migrate -database "{driver}://{username}:{password}@tcp({host}:{port})/{database_name}" -path db/migrations down
 ```
+
+### Postman Collection
+[Go-Komodo.postman_collection.json](Go-Komodo.postman_collection.json)
+
+## Design Database
+![Design_Database.jpeg](Design_Database.jpeg)
+
+1. Create users as buyers and sellers using SQL script
+2. for passwords stored in the database, the password hash
+3. if you want to use a hash, use this hash ($2a$10$Vcoyl0C4xDOfMbGgkMB7su47dw9rQPKcB7Do2mgv6F0NwHHPhSQJi) result compare (Asjfjsdfmn123_), you can also do your own hash
+4. create data access role (1 = buyer, 2 = seller) 

@@ -59,6 +59,13 @@ func (u *userAuth) Login(ctx context.Context, payload presentations.PayloadLogin
 		}, err
 	}
 
+	if findUser == nil {
+		return presentations.Response{
+			Code:    http.StatusForbidden,
+			Message: "Forbidden Access",
+		}, err
+	}
+
 	err = compareHashPassword([]byte(findUser.Password), []byte(payload.Password))
 	if err != nil {
 		return presentations.Response{

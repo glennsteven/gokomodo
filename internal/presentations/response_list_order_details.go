@@ -28,4 +28,5 @@ type BuyerInformation struct {
 	Id       int    `json:"id"`
 	FullName string `json:"full_name"`
 	Address  string `json:"address"`
+	Email    string `json:"email,omitempty"`
 }
