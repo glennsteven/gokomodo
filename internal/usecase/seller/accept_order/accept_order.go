@@ -4,26 +4,10 @@ import (
 	"context"
 	"gokomodo_test/internal/entity"
 	"gokomodo_test/internal/presentations"
-	"gokomodo_test/internal/repository"
 	"log"
 	"net/http"
 	"time"
 )
-
-type acceptOrderUseCase struct {
-	repoOrderDetail repository.OrderDetailsRepositories
-	repoProduct     repository.ProductRepositories
-}
-
-func NewAcceptOrderUseCase(
-	repoOrderDetail repository.OrderDetailsRepositories,
-	repoProduct repository.ProductRepositories,
-) Resolver {
-	return &acceptOrderUseCase{
-		repoOrderDetail: repoOrderDetail,
-		repoProduct:     repoProduct,
-	}
-}
 
 func (p *acceptOrderUseCase) AcceptOrder(ctx context.Context, payload presentations.PayloadAcceptOrder, authId int) (presentations.Response, error) {
 	findDetailOrder, err := p.repoOrderDetail.FindOne(ctx, payload.OrderDetailId)
@@ -74,5 +58,5 @@ func (p *acceptOrderUseCase) AcceptOrder(ctx context.Context, payload presentati
 	return presentations.Response{
 		Code:    http.StatusOK,
 		Message: "orders in the packaging process",
-	}, err
+	}, nil
 }

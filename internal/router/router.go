@@ -45,11 +45,19 @@ func Router(r *mux.Router) {
 		productService.AddProduct,
 	).Methods(http.MethodPost)
 
+	sub.HandleFunc("/seller/products",
+		productService.ListingProducts,
+	).Methods(http.MethodGet)
+
 	acceptOrderUseCase := accept_order.NewAcceptOrderUseCase(OrderDetailsRepository, productsRepository)
 	acceptOrderService := acceptorderservice.NewAcceptProductService(acceptOrderUseCase)
 	sub.HandleFunc("/seller/accept-order",
 		acceptOrderService.AcceptOrder,
 	).Methods(http.MethodPost)
+
+	sub.HandleFunc("/seller/orders",
+		acceptOrderService.ListingOrderDetails,
+	).Methods(http.MethodGet)
 
 	orderProductUseCase := order_product.NewOrderBuyerUseCase(
 		ordersRepository,
