@@ -1,25 +1,18 @@
 package product
 
 import (
-	"encoding/json"
 	"gokomodo_test/internal/handler"
 	"gokomodo_test/internal/helper"
 	"gokomodo_test/internal/presentations"
 	"net/http"
+	"strconv"
 )
 
-func (l *productService) AddProduct(w http.ResponseWriter, r *http.Request) {
+func (l *productService) ListingProducts(w http.ResponseWriter, r *http.Request) {
 	var (
-		payload  presentations.PayloadProduct
-		response presentations.Response
+		payload  presentations.Paging
+		response presentations.ResponseListingProduct
 	)
-	decoder := json.NewDecoder(r.Body)
-	if err := decoder.Decode(&payload); err != nil {
-		response.Code = http.StatusBadRequest
-		response.Message = err.Error()
-		helper.ResponseJSON(w, http.StatusBadRequest, response)
-		return
-	}
 
 	tokenString := r.Header.Get("Authorization")
 	if tokenString == "" {
@@ -37,13 +30,18 @@ func (l *productService) AddProduct(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	resultProduct, err := l.productSeller.CreateProduct(r.Context(), presentations.PayloadProduct{
-		UserId:      auth.Id,
-		Name:        payload.Name,
-		Description: payload.Description,
-		Price:       payload.Price,
-	})
+	page := r.URL.Query().Get("page")
+	limit := r.URL.Query().Get("limit")
+	pg, _ := strconv.Atoi(page)
+	lm, _ := strconv.Atoi(limit)
 
+	payload.Page = pg
+	payload.Limit = lm
+
+	resultProducts, err := l.productSeller.ListProduct(r.Context(), presentations.Paging{
+		Limit: payload.Limit,
+		Page:  payload.Page,
+	}, auth.Id)
 	if err != nil {
 		response.Code = http.StatusInternalServerError
 		response.Message = "Internal Server Error"
@@ -51,6 +49,6 @@ func (l *productService) AddProduct(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	helper.ResponseJSON(w, http.StatusCreated, resultProduct)
+	helper.ResponseJSON(w, http.StatusOK, resultProducts)
 	return
 }

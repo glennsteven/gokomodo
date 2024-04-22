@@ -93,5 +93,5 @@ func (u *userAuth) Login(ctx context.Context, payload presentations.PayloadLogin
 		Code:    http.StatusCreated,
 		Message: "Token created",
 		Data:    map[string]string{"token": token},
-	}, err
+	}, nil
 }

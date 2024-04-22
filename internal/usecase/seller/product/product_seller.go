@@ -4,23 +4,10 @@ import (
 	"context"
 	"gokomodo_test/internal/entity"
 	"gokomodo_test/internal/presentations"
-	"gokomodo_test/internal/repository"
 	"log"
 	"net/http"
 	"time"
 )
-
-type sellerUseCase struct {
-	repoProduct repository.ProductRepositories
-}
-
-func NewProductUseCase(
-	repoProduct repository.ProductRepositories,
-) Resolver {
-	return &sellerUseCase{
-		repoProduct: repoProduct,
-	}
-}
 
 func (p *sellerUseCase) CreateProduct(ctx context.Context, payload presentations.PayloadProduct) (presentations.Response, error) {
 	valueProduct := entity.Products{
@@ -44,5 +31,5 @@ func (p *sellerUseCase) CreateProduct(ctx context.Context, payload presentations
 		Code:    http.StatusCreated,
 		Message: "success create product",
 		Data:    saveProducts,
-	}, err
+	}, nil
 }

@@ -98,5 +98,5 @@ func (o *orderBuyerUseCase) OrderProduct(ctx context.Context, payload presentati
 		Code:    http.StatusCreated,
 		Message: "Your order will be processed immediately, please wait",
 		Data:    saveOrderDetail,
-	}, err
+	}, nil
 }
