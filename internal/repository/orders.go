@@ -21,6 +21,21 @@ func (o *ordersRepository) Store(ctx context.Context, payload entity.Orders) (*e
 		err    error
 	)
 
+	// Begin transaction
+	tx, err := o.db.BeginTx(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+	defer func() {
+		if err != nil {
+			// Rollback the transaction if an error occurred
+			tx.Rollback()
+			return
+		}
+		// Commit the transaction if no error occurred
+		err = tx.Commit()
+	}()
+
 	q := `INSERT INTO orders(
             user_id,
             delivery_source_address,
